@@ -1,7 +1,7 @@
 #include "Types/bsp_system.h"
 
 /*
- * 错误显示模块优化版（notPID）
+ * 错误显示模块优化版
  *
  * ErrorQueueHandle 当前传入的是 uint8_t 错误码。
  * 本模块不改变队列结构，只负责把错误码翻译成可读信息并显示到 OLED。
@@ -78,7 +78,7 @@ static void OLED_ShowPaddedString(uint8_t line, const char *str)
 
 static void OLED_ShowNormalScreen(void)
 {
-    OLED_ShowPaddedString(1, "Gimbal OK");
+    OLED_ShowPaddedString(1, "Gimbal PID OK");
     OLED_ShowPaddedString(2, "Wait UART data");
     OLED_ShowPaddedString(3, "No error yet");
     OLED_ShowPaddedString(4, "USART2 115200");
@@ -88,7 +88,7 @@ static void OLED_ShowErrorScreen(uint8_t error_code, uint32_t repeat_count)
 {
     const ErrorDisplayInfo_t *info = FindErrorInfo(error_code);
 
-    OLED_ShowPaddedString(1, "Gimbal ERR");
+    OLED_ShowPaddedString(1, "Gimbal PID ERR");
 
     OLED_ClearLine(2);
     OLED_ShowString(2, 1, "Code:0x");
